@@ -83,4 +83,36 @@ Responsável por coletar indicadores técnicos da plataforma (disponibilidade, e
 ### Identity Management Service (IMS)
 Serviço de identidade da Adobe Experience Cloud para autenticação e gestão de usuários.
 
-## Arquitetura do sistema
+# Arquitetura do sistema
+
+## Camada do Autor, Visualisação e publicação do AEM
+Os niveis de Autor e publicação utilizam conteiners docker para acelerar o processo de utilização e torna o sistema mais dinamico e simples de entender
+
+´´´
+Eu vou pular essa parte pq é mais teoria, mas o importante é saber que a maioria do sistema funciona em pods e que todos os sistemas estao clusterizados e conternados
+´´´
+
+# Arquitetura de Desenvolvimento
+
+## Repositorios do codigo
+O repositorio AEM tem as mesmas funcoes de um repositorio normal, que logo pós alteração sao enviados denovo ao pipeline.
+Existem varios tipos de repositorios dentro do sistema:
+    - Pilha completa do AEM
+        Contem todos os codigos de Java do server-side e as configurações do OSGi para os niveis de criação e publicação AEM
+    - Front-end do AEM
+        Contem os codigos js, css e html da interface do client-site para os niveis de criação e publicação AEM
+    - Camada da Web do AEM:
+        Contem arquivos das configurações dos Dispatchers.
+    - Configuração do AEM:
+        Contem diversos arquivos de configuração envolvendo os sistemas e ferramentas do AEM como CDN e configuração de tarefas de manutenção
+    - Edge Delivery AEM
+        Armazena codigos js, css e html do client-side para sites criados com Edge Delivery Services
+
+## Pipeline de implementação
+O pipeline utiliza de integração continua e entrega continua (CI/CD) para continuar fazendo a entrega do sistema. Todo esse processo pode ser observado pelo Cloud Manager que é utilizado para monitorar, manutenção e solução de problemas envolvendo o pipeline
+´´´
+image
+´´´
+### Mais sobre o Cloud Manager
+- Seu sistema automatiza quase tudo em uma pipeline e mantem tudo atualizado e preparado, alem de executar testes de funcionalidade e interface.
+
